@@ -3,6 +3,8 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 set -o # fail fast
 
+echo "-----> Starting perl buildpack"
+
 PERLBREW_PACKAGE=http://install.perlbrew.pl/
 VENDORED_PERL="$BUILD_DIR/vendor/perl"
 export PERLBREW_ROOT=$VENDORED_PERL
@@ -15,4 +17,8 @@ perlbrew install perl-stable
 echo "-----> Installing cpanm"
 
 perlbrew install-cpanm
+
+echo "-----> Done"
+
+exit 0
 
