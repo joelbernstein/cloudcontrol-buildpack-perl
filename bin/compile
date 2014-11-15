@@ -3,8 +3,13 @@
 
 BUILD_DIR=$1
 CACHE_DIR=$2
-#set -e # fail fast
-#set -o pipefail
+set -e # fail fast
+set -o pipefail
+
+rm -rf $BUILD_DIR/local
+if [ -d $CACHE_DIR/local ]; then
+  cp -a $CACHE_DIR/local $BUILD_DIR/local
+fi
 
 echo "-----> Starting perl buildpack"
 
@@ -13,6 +18,7 @@ cd $BUILD_DIR
 PERLBREW_PACKAGE=http://install.perlbrew.pl/
 VENDORED_PERL="$BUILD_DIR/vendor/perl"
 export PERLBREW_ROOT=$VENDORED_PERL
+export PERL_CPANM_OPT="--quiet --notest -l $BUILD_DIR/local"
 
 echo "-----> Vendoring Perl"
 
@@ -20,6 +26,7 @@ mkdir -p $VENDORED_PERL  && curl -L -s $PERLBREW_PACKAGE | bash
 source $PERLBREW_ROOT/etc/bashrc
 
 perlbrew install perl-stable
+perlbrew switch perl-stable
 
 echo "-----> Installing cpanm"
 
@@ -31,5 +38,10 @@ cpanm --installdeps
 
 echo "-----> Done"
 
-exit 0
+if [ -d $BUILD_DIR/local ]; then
+  rm -rf $CACHE_DIR/local
+  mkdir -p $CACHE_DIR
+  cp -a $BUILD_DIR/local $CACHE_DIR/local
+fi
 
+exit 0
