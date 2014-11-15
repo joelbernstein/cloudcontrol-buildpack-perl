@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
+# bin/compile <build-dir> <cache-dir>
+
 BUILD_DIR=$1
 CACHE_DIR=$2
-set -e # fail fast
-set -o pipefail
+#set -e # fail fast
+#set -o pipefail
 
 echo "-----> Starting perl buildpack"
+
+cd $BUILD_DIR
 
 PERLBREW_PACKAGE=http://install.perlbrew.pl/
 VENDORED_PERL="$BUILD_DIR/vendor/perl"
