@@ -1,5 +1,2 @@
-#!/bin/sh
-cat <<EOF
----
-
-EOF
+#!/usr/bin/env bash
+echo -e "\n---\n"
