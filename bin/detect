@@ -2,6 +2,8 @@
 # bin/detect <build-dir>
 BUILD_DIR=$1
 
+/bin/ls $BUILD_DIR
+
 set -e # fail fast
 set -o pipefail
 
