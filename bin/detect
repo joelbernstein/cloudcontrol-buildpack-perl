@@ -7,7 +7,7 @@ BUILD_DIR=$1
 set -e # fail fast
 set -o pipefail
 
-if [ -f "${BUILD_DIR}/cpanfile" ]; then
+if [ -f ${BUILD_DIR}/cpanfile ]; then
   echo ccperl
   exit 0
 else
