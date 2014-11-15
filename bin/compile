@@ -32,6 +32,10 @@ echo "-----> Installing cpanm"
 
 perlbrew install-cpanm
 
+echo "-----> Installing Starman (PSGI webserver)"
+
+cpanm Starman
+
 echo "-----> Installing CPAN dependencies"
 
 cpanm --installdeps
