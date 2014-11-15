@@ -7,8 +7,8 @@ set -o pipefail
 
 cd $BUILD_DIR
 
-if [ -f ${BUILD_DIR}/cpanfile ]; then
-  echo ccperl
+if [ -f ${BUILD_DIR}/app.psgi ]; then
+  echo Perl
   exit 0
 else
   exit 1
