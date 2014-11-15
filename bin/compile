@@ -49,7 +49,9 @@ cpanm Starman
 
 echo "-----> Installing CPAN dependencies"
 
-cpanm --verbose Module::Install Module::Install::Catalyst Catalyst::Runtime
+cpanm Module::Install
+cpanm Module::Install::Catalyst
+cpanm Catalyst::Runtime
 cpanm --verbose --installdeps .
 
 echo "-----> Done"
