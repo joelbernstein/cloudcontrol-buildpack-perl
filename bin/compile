@@ -31,7 +31,10 @@ echo "-----> Vendoring Perl"
 mkdir -p $VENDORED_PERL  && curl -L -s $PERLBREW_PACKAGE | bash
 source $PERLBREW_ROOT/etc/bashrc
 
-perlbrew install perl-stable
+if ! [ -x $(which perl) ]; then
+  perlbrew install perl-stable
+fi
+
 perlbrew switch $(perlbrew list | cut -c3- | sort -n | tail -n1)
 
 echo "-----> Installing cpanm"
