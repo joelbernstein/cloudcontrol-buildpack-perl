@@ -49,7 +49,7 @@ cpanm Starman
 
 echo "-----> Installing CPAN dependencies"
 
-cpanm --installdeps .
+cpanm --verbose --installdeps .
 
 echo "-----> Done"
 
