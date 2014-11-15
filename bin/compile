@@ -25,6 +25,10 @@ echo "-----> Installing cpanm"
 
 perlbrew install-cpanm
 
+echo "-----> Installing CPAN dependencies"
+
+cpanm --installdeps
+
 echo "-----> Done"
 
 exit 0
