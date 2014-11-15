@@ -11,6 +11,12 @@ if [ -d $CACHE_DIR/local ]; then
   cp -a $CACHE_DIR/local $BUILD_DIR/local
 fi
 
+rm -rf $BUILD_DIR/vendor/perl
+mkdir -p $BUILD_DIR/vendor
+if [ -d $CACHE_DIR/perl ]; then
+    cp -a $CACHE_DIR/perl $BUILD_DIR/vendor/perl
+fi
+
 echo "-----> Starting perl buildpack"
 
 cd $BUILD_DIR
@@ -46,6 +52,12 @@ if [ -d $BUILD_DIR/local ]; then
   rm -rf $CACHE_DIR/local
   mkdir -p $CACHE_DIR
   cp -a $BUILD_DIR/local $CACHE_DIR/local
+fi
+
+if [ -d $BUILD_DIR/vendor/perl ]; then
+  rm -rf $CACHE_DIR/perl
+  mkdir -p $CACHE_DIR/perl
+  cp -a $BUILD_DIR/vendor/perl $CACHE_DIR/perl
 fi
 
 exit 0
