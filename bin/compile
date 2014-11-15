@@ -31,7 +31,9 @@ echo "-----> Vendoring Perl"
 mkdir -p $VENDORED_PERL  && curl -L -s $PERLBREW_PACKAGE | bash
 source $PERLBREW_ROOT/etc/bashrc
 
-if ! [ -x $(which perl) ]; then
+if [ -x $(which perl) ]; then
+  echo "-----> Using previously-built Perl"
+else
   perlbrew install perl-stable
 fi
 
