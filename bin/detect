@@ -1,12 +1,13 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # bin/detect <build-dir>
-
 BUILD_DIR=$1
 
-if [ -f ${BUILD_DIR}/cpanfile ]; then
+set -o # fail fast
+
+if [ -f "${BUILD_DIR}/cpanfile" ]; then
   echo "perl-cpanfile"
   exit 0
-else if [ -f ${BUILD_DIR}/foo]]; then
+else if [ -f "${BUILD_DIR}/foo" ]; then
   echo "perl-foo"
   exit 0
 else

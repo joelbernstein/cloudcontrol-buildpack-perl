@@ -1,6 +1,7 @@
-#!/bin/sh
+#!/usr/bin/env bash
 BUILD_DIR=$1
 CACHE_DIR=$2
+set -o # fail fast
 
 PERLBREW_PACKAGE=http://install.perlbrew.pl/
 VENDORED_PERL="$BUILD_DIR/vendor/perl"
