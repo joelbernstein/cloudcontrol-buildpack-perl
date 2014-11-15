@@ -17,6 +17,8 @@ export PERLBREW_ROOT=$VENDORED_PERL
 echo "-----> Vendoring Perl"
 
 mkdir -p $VENDORED_PERL  && curl -L -s $PERLBREW_PACKAGE | bash
+source $PERLBREW_ROOT/etc/bashrc
+
 perlbrew install perl-stable
 
 echo "-----> Installing cpanm"
