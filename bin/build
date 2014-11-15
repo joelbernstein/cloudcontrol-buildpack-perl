@@ -1,2 +1,17 @@
 #!/bin/sh
+BUILD_DIR=$1
+CACHE_DIR=$2
+
+PERLBREW_PACKAGE=http://install.perlbrew.pl/
+VENDORED_PERL="$BUILD_DIR/vendor/perl"
+export PERLBREW_ROOT=$VENDORED_PERL
+
+echo "-----> Vendoring Perl"
+
+mkdir -p $VENDORED_PERL  && curl -L -s -o $PERLBREW_PACKAGE | bash
+perlbrew install perl-stable
+
+echo "-----> Installing cpanm"
+
+perlbrew install-cpanm
 
