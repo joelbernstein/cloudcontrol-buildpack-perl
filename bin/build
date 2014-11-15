@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 BUILD_DIR=$1
 CACHE_DIR=$2
-set -o # fail fast
+set -e # fail fast
+set -o pipefail
 
 echo "-----> Starting perl buildpack"
 

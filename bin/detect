@@ -2,7 +2,8 @@
 # bin/detect <build-dir>
 BUILD_DIR=$1
 
-set -o # fail fast
+set -e # fail fast
+set -o pipefail
 
 if [ -f "${BUILD_DIR}/cpanfile" ]; then
   echo ccperl
