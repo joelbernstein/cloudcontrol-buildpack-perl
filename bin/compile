@@ -45,10 +45,11 @@ perlbrew install-cpanm
 
 echo "-----> Installing Starman (PSGI webserver)"
 
-cpanm Starman
+cpanm Starman 
 
 echo "-----> Installing CPAN dependencies"
 
+cpanm --verbose Module::Install
 cpanm --verbose --installdeps .
 
 echo "-----> Done"
