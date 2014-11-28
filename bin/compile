@@ -34,12 +34,13 @@ source $PERLBREW_ROOT/etc/bashrc
 if [ -x $(which perl) ]; then
   echo "-----> Using previously-built Perl"
 else
+  echo "-----> Building latest stable Perl with perlbrew"
   perlbrew install perl-stable
 fi
 
 perlbrew switch $(perlbrew list | cut -c3- | sort -n | tail -n1)
 
-echo "-----> Installing cpanm"
+echo "-----> Installing cpanminus"
 
 perlbrew install-cpanm
 
@@ -50,9 +51,26 @@ cpanm Starman
 echo "-----> Installing CPAN dependencies"
 
 cpanm Module::Install
-cpanm Module::Install::Catalyst
-cpanm Catalyst::Runtime
-cpanm --verbose --installdeps .
+
+if [ -e Makefile.PL ]; then
+    if [ -n $( grep 'use Module::Install::Catalyst' Makefile.PL ) ]; then
+      echo "-----> Found Catalyst app - installing runtime"
+      cpanm Module::Install::Catalyst
+      cpanm Catalyst::Runtime
+    fi
+fi
+
+if [ -e cpanfile ]; then
+    echo "-----> Found cpanfile - preparing for carton installation"
+    echo "-----> Installing carton"
+    cpanm Carton
+    echo "-----> Installing dependencies with carton"
+    carton install
+else
+  echo "-----> Installing dependencies with cpanminus"
+  cpanm --installdeps .
+fi
+
 
 echo "-----> Done"
 
