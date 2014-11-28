@@ -64,12 +64,10 @@ if [ -e cpanfile ]; then
     echo "-----> Found cpanfile - preparing for carton installation"
     echo "-----> Installing carton"
     cpanm Carton
-    echo "-----> Installing dependencies with carton"
-    carton install
-else
-  echo "-----> Installing dependencies with cpanminus"
-  cpanm --installdeps .
 fi
+
+echo "-----> Installing dependencies with cpanminus"
+cpanm --installdeps .
 
 
 echo "-----> Done"
